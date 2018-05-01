@@ -4,6 +4,10 @@ input=${1}
 
 [ -z "${input}" ] && printf "provide virtual machine name or name pattern to match \r\n" && exit 1
 
+read -s -p "VSphere Password: " PASSWORD
+echo
+export GOVC_PASSWORD="${PASSWORD}"
+
 vms=$(govc ls vm | grep $input)
 
 for x in $vms; do 
